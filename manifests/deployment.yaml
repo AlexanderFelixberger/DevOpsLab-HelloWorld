@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cd-k8s-azure
+  labels:
+    app: cd-k8s-azure
+  namespace: ingress-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cd-k8s-azure
+  template:
+    metadata:
+      labels:
+        app: cd-k8s-azure
+    spec:
+      containers:
+        - name: cd-k8s-azure
+          image: evombackend.azurecr.io/cd-k8s-azure:latest
+          ports:
+            - containerPort: 8080
